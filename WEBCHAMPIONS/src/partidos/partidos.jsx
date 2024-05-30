@@ -4,56 +4,55 @@ import React from 'react';
 
 const NavBar = () => {
     const styles = {
-        position: 'fixed', // Fijar la posición de la barra de navegación
-        top: 0, // Colocarla en la parte superior  
-        background: 'rgba(0, 0, 0, 0.5)', // Color de fondo semi-transparente
-        backdropFilter: 'blur(10px)', // Aplicar difuminado
-        color: 'white', // color de texto
+        position: 'fixed',
+        left: '27%',
+        top: '20px',
         display: 'flex',
-        justifyContent: 'space-between',
-        padding: '0%',
-        alignItems: 'center',
-        height: '10vh',
-        width: '100%',
-        zIndex: 1000, // Asegurar que esté por encima de otros elementos
+        flexDirection: 'row', // Cambiar a fila para alinear logo y enlaces en línea
+        height: '8vh',
+        width: '50%',
+        padding: '1rem',
+        alignItems: 'center', 
+        background: 'rgba(0, 0, 0, 0.7)', 
+        color: '#fff',
+        borderRadius: '50px',
+        zIndex: 1000,
     };
 
     const logo = {
         filter: 'invert(100%)',
-        padding: '5%',
-        height: '65%',
-        width: '7%',
+        height: '100%',
     };
 
-    const titulos = {
+    const navbarLink = {
+        color: '#fff',
         fontFamily: 'Century Gothic, sans-serif',
-        fontSize: '1.5em', 
+        fontSize: '2rem', 
+        marginBottom: '2rem', 
         fontWeight: 'bold',
-        margin: '0',
-        padding: '9%',
-        color: 'white',
-        textDecoration: 'none', 
+
+        margin: '0 4rem', // Espacio entre los enlaces
     };
 
-    const titulos1 = {
-        fontFamily: 'Century Gothic, sans-serif',
-        fontSize: '1.5em', 
-        fontWeight: 'bold',
-        margin: '0',
-        padding: '15%',
-        color: 'white',
-        textDecoration: 'none', 
+    const navbarLinks = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexGrow: 1,
     };
     
     return (
         <nav style={styles}>
-            <img src='public/champions.png' alt="logo" width="40" height="40" style={logo} />
-            <Link to='/' style={titulos}>HOME</Link>
-            <Link to='/champions' style={titulos}>CHAMPIONS</Link>
-            <Link to='/partidos' style={titulos1}>SEMIFINAL</Link>
+            <img src='public/champions.png' alt="logo" style={logo} />
+            <div style={navbarLinks}>
+                <Link to='/' style={navbarLink}>HOME</Link>
+                <Link to='/champions' style={navbarLink}>CHAMPIONS</Link>
+                <Link to='/partidos' style={navbarLink}>SEMIFINAL</Link>
+            </div>
         </nav>
     );
 }
+
 
 const Loading = () => {
     return (
@@ -279,9 +278,9 @@ const Partidos = () => {
 
 
     const styles = {
-        backgroundColor: 'White', // color de fondo
-        overflow: 'hidden', // ocultar el desbordamiento del contenido
-        minHeight: '100vh', // altura mínima para cubrir toda la pantalla
+        backgroundColor: 'White',
+        overflow: 'hidden', 
+        minHeight: '100vh', 
         display: 'block',
         position : 'relative',
         margin: 0,

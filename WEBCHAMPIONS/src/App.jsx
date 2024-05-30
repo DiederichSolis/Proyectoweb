@@ -6,19 +6,10 @@ import Partidos from './partidos/partidos.jsx';
 import Home from  './principal.jsx'
 
 
-
-const logo = {
-    filter: 'invert(100%)',
-    padding: '5%',
-    height: '65%',
-    width: '7%',
-};
-
 const App = () => {
     return (
         <Router>
         <Routes>
-       
                 <Route path="/" element={<Home />} />
                 <Route path="/champions" element={<Champions />} />
                 <Route path="/partidos" element={<Partidos />} />

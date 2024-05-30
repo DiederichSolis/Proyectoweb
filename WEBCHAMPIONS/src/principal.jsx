@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Navbar1 = () => {
     const navbar = {
-        position: 'fixed',
+      position: 'fixed',
         left: '27%',
         top: '20px',
         display: 'flex',
-        flexDirection: 'column',
-        height: '6vh',
+        flexDirection: 'row', // Cambiar a fila para alinear logo y enlaces en línea
+        height: '8vh',
         width: '50%',
         padding: '1rem',
         alignItems: 'center', 
@@ -18,26 +18,34 @@ const Navbar1 = () => {
         zIndex: 1000,
     };
 
-    const navbarLinks = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexGrow: 1,
-        margin: '0 20%',
-        gap: '30%', 
-    };
 
-    const navbarLink = {
-        color: '#fff',
-        fontFamily: 'Century Gothic, sans-serif',
-        fontSize: '2rem', 
-        marginBottom: '2rem', 
-        fontWeight: 'bold',
-    };
+    const logo = {
+      filter: 'invert(100%)',
+      height: '100%',
+  };
+
+  const navbarLink = {
+      color: '#fff',
+      fontFamily: 'Century Gothic, sans-serif',
+      fontSize: '2rem', 
+      marginBottom: '2rem', 
+      fontWeight: 'bold',
+
+      margin: '0 4rem', // Espacio entre los enlaces
+  };
+
+  const navbarLinks = {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexGrow: 1,
+  };
 
     return (
         <nav style={navbar}>
+            <img src='public/champions.png' alt="logo" style={logo} />
             <div style={navbarLinks}>
+              
                 <a href='/' style={navbarLink}>HOME</a>
                 <a href='/champions' style={navbarLink}>CHAMPIONS</a>
                 <a href='/partidos' style={navbarLink}>SEMIFINAL</a>
@@ -76,7 +84,7 @@ const NavBar = () => {
         marginLeft: '10px',
         marginRight: '10px',
         textDecoration: 'none',
-        fontSize: '2.5em' 
+        fontSize: '2.2em' 
     };
 
     return (

@@ -1,14 +1,71 @@
 import React from "react"
 import { Link } from 'react-router-dom'
 
+const NavBar1 = () => {
+    const navbar = {
+      position: 'fixed',
+      left: '50px',
+      bottom: 'px',
+      display: 'flex',
+      flexDirection: 'column',
+      height: '50vh',
+      width: '200px',
+      justifyContent: 'center', // Centrar verticalmente los elementos
+      padding: '1rem',
+      background: ' rgba(2, 48, 71, 1)',
+      color: '#fff',
+      borderRadius: '10px',
+      zIndex: 1000,
+    };
+  
+    const navbarLinks = {
+      listStyle: 'none',
+      padding: 0,
+    };
+  
+    const navbarLink = {
+      color: '#fff',
+      fontFamily: 'Century Gothic, sans-serif',
+      fontSize: '2rem',
+      marginBottom: '2rem', // Aumento del margen inferior para más espacio
+      fontWeight: 'bold',
+    };
+  
+    const iconStyles = {
+      color: 'white',
+      marginLeft: '10px',
+      marginRight: '10px',
+      textDecoration: 'none',
+      fontSize: '1.5em',
+    };
+  
+    return (
+      <nav style={navbar}>
+        <div>
+          <a href="https://www.instagram.com/championsleague" style={iconStyles}>
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/uefachampionsleague" style={iconStyles}>
+            <i className="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UCpcTrCXblq78GZrTUTLWeBw" style={iconStyles}>
+            <i className="fab fa-youtube"></i>
+          </a>
+        </div>
+      </nav>
+    );
+  };
+
 const NavBar = () => {
     const styles = {
         position: 'fixed', // Fijar la posición de la barra de navegación
-        top: 0, // Colocarla en la parte superior
+        left: 0, // Colocarla en la parte superior
         zIndex: 1000, // Asegurar que esté por encima de otros elementos
         background: 'linear-gradient(to bottom, rgba(10, 10, 10, 1), rgba(10, 10, 10, 0))', // color de fondo
         color: 'black', // color de texto
         display: 'flex',
+        justifyContent: 'center', // Centrar verticalmente los elementos
+        alignItems: 'center', // Centrar horizontalmente los elementos
         justifyContent: 'space-between',
         padding: '0%',
         alignItems: 'center',
@@ -78,6 +135,7 @@ const Home = () => {
     return (
         <main style={styles}>
             <NavBar />
+            <NavBar1 />
             <VIDEO />
         </main>
     );

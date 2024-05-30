@@ -1,163 +1,126 @@
-import React from "react"
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from 'react-router-dom';
 
-const Navbar1 = () =>{
+const Navbar1 = () => {
     const navbar = {
         position: 'fixed',
         left: '27%',
-            top: '20px',
+        top: '20px',
         display: 'flex',
         flexDirection: 'column',
-        height: '10vh',
+        height: '6vh',
         width: '50%',
         padding: '1rem',
-        alignItems: 'center', // Centrar horizontalmente los elementos
-        background: 'rgba(0, 0, 0, 0.5)', // Color negro transparente
+        alignItems: 'center', 
+        background: 'rgba(0, 0, 0, 0.7)', 
         color: '#fff',
-        borderRadius: '10px',
-      
-        zIndex: 1000, // Asegurar que esté por encima de otros elementos
-      
-      };
-      
-      
-      const navbarLinks = {
+        borderRadius: '50px',
+        zIndex: 1000,
+    };
+
+    const navbarLinks = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
         margin: '0 20%',
-        gap: '30%', // Espacio entre los enlaces
-        
-      };
-      
-      const navbarLink = {
-          color: '#fff',
-          fontFamily: 'Century Gothic, sans-serif',
-          fontSize: '2rem', // Tamaño de fuente más grande
-          marginBottom: '2rem', // Mayor separación entre enlaces
-          fontWeight: 'bold',
-      };
-      
-      
-        
-      
-      const iconStyles = {
+        gap: '30%', 
+    };
+
+    const navbarLink = {
+        color: '#fff',
+        fontFamily: 'Century Gothic, sans-serif',
+        fontSize: '2rem', 
+        marginBottom: '2rem', 
+        fontWeight: 'bold',
+    };
+
+    return (
+        <nav style={navbar}>
+            <div style={navbarLinks}>
+                <a href='/' style={navbarLink}>HOME</a>
+                <a href='/champions' style={navbarLink}>CHAMPIONS</a>
+                <a href='/partidos' style={navbarLink}>SEMIFINAL</a>
+            </div>
+        </nav>
+    );
+};
+
+const NavBar = () => {
+    const navbar = {
+        position: 'fixed',
+        left: '50px',
+        bottom: '27%',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '25vh',
+        width: '150px',
+        padding: '1rem',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: 'rgba(0, 0, 0, 0.8)', 
+        color: '#fff',
+        borderRadius: '50px',
+        zIndex: 1000, 
+    };
+
+    const navbarLinks = {
+        listStyle: 'none',
+        justifyContent: 'center', 
+        alignItems: 'center',
+        padding: 0,
+    };
+
+    const iconStyles = {
         color: 'white',
         marginLeft: '10px',
         marginRight: '10px',
         textDecoration: 'none',
-        fontSize: '1.5em'
-      };
-      
-        return (
-          <nav style={navbar}>
-            <div style={navbarLinks}>
-              <a href='/' style={navbarLink}>HOME</a>
-              <a href='/champions'  style={navbarLink}>CHAMPIONS</a>
-              <a href='/partidos'  style={navbarLink}>SEMIFINAL</a>
-            </div>
-          </nav>
-        );
-      };
-  
+        fontSize: '2.5em' 
+    };
 
-const NavBar = () => {
-    const navbar = {
-      position: 'fixed',
-      left: '50px',
-          bottom: '27%',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '40vh',
-          width: '200px',
-      padding: '1rem',
-      justifyContent: 'center', // Centrar verticalmente los elementos
-      alignItems: 'center', // Centrar horizontalmente los elementos
-      background: 'rgba(0, 0, 0, 0.5)', // Color negro transparente
-      color: '#fff',
-      borderRadius: '10px',
-    
-      zIndex: 1000, // Asegurar que esté por encima de otros elementos
-    
-    };
-    
-    
-    const navbarLinks = {
-      listStyle: 'none',
-      justifyContent: 'center', // Centrar verticalmente los elementos
-      alignItems: 'center', // Centrar horizontalmente los elementos
-      padding: 0
-      
-    };
-    
-    const navbarLink = {
-        color: '#fff',
-        fontFamily: 'Century Gothic, sans-serif',
-        fontSize: '2rem', // Tamaño de fuente más grande
-        marginBottom: '2rem', // Mayor separación entre enlaces
-        fontWeight: 'bold',
-    };
-    
-    
-      
-    
-    const iconStyles = {
-      color: 'white',
-      marginLeft: '10px',
-      marginRight: '10px',
-      textDecoration: 'none',
-      fontSize: '1.5em'
-    };
-    
-      return (
+    return (
         <nav style={navbar}>
             <a href="https://www.instagram.com/championsleague" style={iconStyles}>
-              <i className="fab fa-instagram"></i>
+                <i className="fab fa-instagram"></i>
             </a>
             <a href="https://www.facebook.com/uefachampionsleague" style={iconStyles}>
-              <i className="fab fa-facebook"></i>
+                <i className="fab fa-facebook"></i>
             </a>
             <a href="https://www.youtube.com/channel/UCpcTrCXblq78GZrTUTLWeBw" style={iconStyles}>
-              <i className="fab fa-youtube"></i>
+                <i className="fab fa-youtube"></i>
             </a>
-        
         </nav>
-      );
-    };
+    );
+};
 
-const VIDEO = () => {
+const IMAGEVIEW = () => {
     return (
         <main>
-            <video width="100%" height="100%" autoPlay loop playsInline volume={1}>
-                <source src="src/assets/multimedia/championsalb.mp4" type="video/mp4" />
-            </video>
-            
-     </main>
-
+              <img src='https://cache.pressmailing.net/thumbnail/story_hires/847a36b8-1a27-41ad-95f2-f177d13301ec/UCL_Keyvisual.jpg.jpg' alt="video" width="100%" height="100%" />
+          
+        </main>
     );
-}
+};
 
 const Home = () => {
     const styles = {
-        backgroundColor: 'rgba(30, 30, 30, 1)', // color de fondo
-        overflow: 'hidden', // ocultar el desbordamiento del contenido
-        minHeight: '100vh', // altura mínima para cubrir toda la pantalla
+        backgroundColor: 'rgba(30, 30, 30, 1)', 
+        overflow: 'hidden', 
+        minHeight: '100vh', 
         display: 'block',
-        position : 'relative',
+        position: 'relative',
         margin: 0,
         padding: 0,
     };
+
     return (
         <main style={styles}>
             <Navbar1 />
             <NavBar />
-            <VIDEO />
+            <IMAGEVIEW />
         </main>
     );
-}
-
+};
 
 export default Home;
-
-

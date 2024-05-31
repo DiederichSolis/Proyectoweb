@@ -2,57 +2,57 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const Navbar1 = () => {
-    const navbar = {
-      position: 'fixed',
+    const styles = {
+        position: 'fixed',
         left: '27%',
         top: '20px',
         display: 'flex',
-        flexDirection: 'row', // Cambiar a fila para alinear logo y enlaces en línea
+        flexDirection: 'row',
         height: '8vh',
         width: '50%',
         padding: '1rem',
-        alignItems: 'center', 
+        alignItems: 'center',
         background: 'rgba(0, 0, 0, 0.7)', 
         color: '#fff',
         borderRadius: '50px',
         zIndex: 1000,
+        overflow: 'hidden', // Asegura que no haya contenido que se desborde
     };
 
-
     const logo = {
-      filter: 'invert(100%)',
-      height: '100%',
-  };
+        filter: 'invert(100%)',
+        height: '100%',
+        marginRight: '2rem', // Asegura que haya espacio entre el logo y los enlaces
+    };
 
-  const navbarLink = {
-      color: '#fff',
-      fontFamily: 'Century Gothic, sans-serif',
-      fontSize: '2rem', 
-      marginBottom: '2rem', 
-      fontWeight: 'bold',
+    const navbarLink = {
+        color: '#fff',
+        fontFamily: 'Century Gothic, sans-serif',
+        fontSize: '1.5rem', // Ajusta el tamaño de la fuente para asegurar que todos los enlaces quepan
+        fontWeight: 'bold',
+        margin: '0 1rem', // Ajusta el espacio entre los enlaces
+    };
 
-      margin: '0 4rem', // Espacio entre los enlaces
-  };
-
-  const navbarLinks = {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexGrow: 1,
-  };
+    const navbarLinks = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexGrow: 1,
+        overflowX: 'auto', // Permite el desplazamiento horizontal si el contenido es demasiado ancho
+    };
 
     return (
-        <nav style={navbar}>
+        <nav style={styles}>
             <img src='public/champions.png' alt="logo" style={logo} />
             <div style={navbarLinks}>
-              
-                <a href='/' style={navbarLink}>HOME</a>
-                <a href='/champions' style={navbarLink}>CHAMPIONS</a>
-                <a href='/partidos' style={navbarLink}>SEMIFINAL</a>
+                <Link to='/' style={navbarLink}>HOME</Link>
+                <Link to='/champions' style={navbarLink}>CHAMPIONS</Link>
+                <Link to='/partidos' style={navbarLink}>SEMIFINAL</Link>
+                <Link to='/login' style={navbarLink}>LOGIN</Link>
             </div>
         </nav>
     );
-};
+}
 
 const NavBar = () => {
     const navbar = {

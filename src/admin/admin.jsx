@@ -274,7 +274,7 @@ const NavBar = () => {
     display: 'flex',
     flexDirection: 'row',
     height: '8vh',
-    width: '60%',
+    width: '70%',
     padding: '1rem',
     alignItems: 'center',
     background: 'rgba(0, 0, 0, 0.7)',
@@ -304,6 +304,11 @@ const NavBar = () => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    window.location.href = '/login'
+  }
+
   return (
         <nav style={styles}>
 
@@ -316,7 +321,9 @@ const NavBar = () => {
             <Button variant="primary" onClick={handleShow}>
                 New Post +
             </Button>
-
+            <Button variant="danger" onClick={handleLogout}>
+          Logout
+        </Button>
             <PostModal show={show} handleClose={handleClose} />
         </nav>
   )

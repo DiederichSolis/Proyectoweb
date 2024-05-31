@@ -1,16 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Champions from './champions/champions.jsx';
-import Partidos from './partidos/partidos.jsx';
-import Home from './principal.jsx';
-import Login from './Login/Login.jsx';
-import Admin from './admin/admin.jsx';
-import PrivateRoute from './PrivateRoute';
-
-
+/* eslint-disable react/react-in-jsx-scope */
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Champions from './champions/champions.jsx'
+import Partidos from './partidos/partidos.jsx'
+import Home from './principal.jsx'
+import Login from './Login/Login.jsx'
+import Admin from './admin/admin.jsx'
+import PrivateRoute from './PrivateRoute'
 
 const App = () => {
-    return (
+  return (
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -24,7 +22,7 @@ const App = () => {
                 } />
             </Routes>
         </Router>
-    );
+  )
 }
 
-export default App;
+export default App

@@ -1,6 +1,141 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+
+
+const DeletePostModal = ({ show, handleClose, handleDelete, post }) => {
+    return (
+        <Modal show={show} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Confirm Delete</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Are you sure you want to delete this post?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Cancel
+                </Button>
+                <Button variant="danger" onClick={() => handleDelete(post.id)}>
+                    Delete
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    );
+};
+
+
+const PostModal = ({ show, handleClose }) => {
+    const [Ciudad, setCiudad] = useState('');
+    const [Pais, setPais] = useState('');
+    const [Equipo_local, setEquipo_local] = useState('');
+    const [Equipo_visitante, setEquipo_visitante] = useState('');
+    const [Goles_Local, setGoles_Local] = useState('');
+    const [Goles_Visitante, setGoles_Visitante] = useState('');
+    const [imagen_base64, setImagen_base64] = useState('');
+    const [Fase_champions, setFase_champions] = useState('');
+
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const hours = String(d.getHours()).padStart(2, '0');
+        const minutes = String(d.getMinutes()).padStart(2, '0');
+        const seconds = String(d.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
+
+    const handleCreatePost = async (e) => {
+        e.preventDefault();
+        const Fecha_partido = formatDate(new Date()); // Obtener la fecha y hora actuales en formato 'YYYY-MM-DD HH:MM:SS'
+        try {
+            const response = await fetch('http://3.129.191.211/api/22952/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Ciudad,
+                    Pais,
+                    Equipo_local,
+                    Equipo_visitante,
+                    Goles_Local,
+                    Goles_Visitante,
+                    imagen_base64,
+                    Fase_champions,
+                    Fecha_partido,
+                    Nombre_jugador: null,
+                    Apellido_jugador: null,
+                    Edad_jugador: null,
+                    Posicion_jugador: null,
+                }),
+            });
+
+            if (response.ok) {
+                console.log("Post creado con éxito");
+                handleClose();
+            } else {
+                console.error("Error al crear post", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error en la red al crear post", error);
+        }
+    };
+
+    return (
+        <Modal show={show} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>New Post</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleCreatePost}>
+                    <Form.Group className="mb-3" controlId="Ciudad">
+                        <Form.Label>Ciudad:</Form.Label>
+                        <Form.Control type="text" value={Ciudad} onChange={(e) => setCiudad(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Pais">
+                        <Form.Label>Pais:</Form.Label>
+                        <Form.Control type="text" value={Pais} onChange={(e) => setPais(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Equipo_local">
+                        <Form.Label>Equipo Local:</Form.Label>
+                        <Form.Control type="text" value={Equipo_local} onChange={(e) => setEquipo_local(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Equipo_visitante">
+                        <Form.Label>Equipo Visitante:</Form.Label>
+                        <Form.Control type="text" value={Equipo_visitante} onChange={(e) => setEquipo_visitante(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Goles_Local">
+                        <Form.Label>Goles Local:</Form.Label>
+                        <Form.Control type="number" value={Goles_Local} onChange={(e) => setGoles_Local(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Goles_Visitante">
+                        <Form.Label>Goles Visitante:</Form.Label>
+                        <Form.Control type="number" value={Goles_Visitante} onChange={(e) => setGoles_Visitante(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="imagen_base64">
+                        <Form.Label>Imagen (Base64):</Form.Label>
+                        <Form.Control type="text" value={imagen_base64} onChange={(e) => setImagen_base64(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="Fase_champions">
+                        <Form.Label>Fase Champions:</Form.Label>
+                        <Form.Control type="text" value={Fase_champions} onChange={(e) => setFase_champions(e.target.value)} />
+                    </Form.Group>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" type="submit">
+                            Post
+                        </Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal.Body>
+        </Modal>
+    );
+};
 
 const NavBar = () => {
     const styles = {
@@ -10,7 +145,7 @@ const NavBar = () => {
         display: 'flex',
         flexDirection: 'row',
         height: '8vh',
-        width: '50%',
+        width: '60%',
         padding: '1rem',
         alignItems: 'center',
         background: 'rgba(0, 0, 0, 0.7)', 
@@ -41,6 +176,10 @@ const NavBar = () => {
         flexGrow: 1,
         overflowX: 'auto', // Permite el desplazamiento horizontal si el contenido es demasiado ancho
     };
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <nav style={styles}>
@@ -51,6 +190,11 @@ const NavBar = () => {
                 <Link to='/partidos' style={navbarLink}>SEMIFINAL</Link>
                 <Link to='/login' style={navbarLink}>LOGIN</Link>
             </div>
+            <Button variant="primary" onClick={handleShow}>
+                New Post +
+            </Button>
+
+            <PostModal show={show} handleClose={handleClose} />
         </nav>
     );
 }
@@ -133,6 +277,7 @@ const PostsLoader = () => {
 
 const Card = ({ post }) => {
     const [isColumnLayout, setIsColumnLayout] = React.useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const cardStyles = {
         boxSizing: 'border-box',
@@ -212,6 +357,26 @@ const Card = ({ post }) => {
         };
     }, []);
 
+    const handleDelete = async (postId) => {
+        try {
+            const response = await fetch(`http://3.129.191.211/api/22952/posts/${postId}`, {
+                method: 'DELETE',
+            });
+    
+            if (response.ok) {
+                console.log("Post eliminado con éxito");
+                onDelete(postId); // Llamar a la función onDelete pasada como prop para actualizar la lista de posts
+            } else {
+                console.error("Error al eliminar el post", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error en la red al eliminar el post", error);
+        } finally {
+            setShowDeleteModal(false); // Esto se ejecutará siempre, independientemente de si la eliminación fue exitosa o falló
+        }
+    };
+    
+
     return (
         <div style={containerStyles}>
             <div style={cardStyle1}>
@@ -226,7 +391,16 @@ const Card = ({ post }) => {
                 <p style={textsStyles}>{"Pais: "+post.Pais}</p>
                 <p style={textsStyles}>{"Cuidad: "+post.Ciudad}</p>
             </div>
+            <Button variant="danger" onClick={() => setShowDeleteModal(true)}>
+                    Delete
+                </Button>
             </div>
+            <DeletePostModal
+                show={showDeleteModal}
+                handleClose={() => setShowDeleteModal(false)}
+                handleDelete={handleDelete}
+                post={post}
+            />
         </div>
 
     );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 
+
 const NavBar = () => {
     const styles = {
         position: 'fixed',

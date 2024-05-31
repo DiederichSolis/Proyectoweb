@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 
@@ -17,21 +17,21 @@ const NavBar = () => {
         color: '#fff',
         borderRadius: '50px',
         zIndex: 1000,
-        overflow: 'hidden',
+        overflow: 'hidden', // Asegura que no haya contenido que se desborde
     };
 
     const logo = {
         filter: 'invert(100%)',
         height: '100%',
-        marginRight: '2rem',
+        marginRight: '2rem', // Asegura que haya espacio entre el logo y los enlaces
     };
 
     const navbarLink = {
         color: '#fff',
         fontFamily: 'Century Gothic, sans-serif',
-        fontSize: '1.5rem',
+        fontSize: '1.5rem', // Ajusta el tamaño de la fuente para asegurar que todos los enlaces quepan
         fontWeight: 'bold',
-        margin: '0 1rem',
+        margin: '0 1rem', // Ajusta el espacio entre los enlaces
     };
 
     const navbarLinks = {
@@ -39,12 +39,12 @@ const NavBar = () => {
         justifyContent: 'center',
         alignItems: 'center',
         flexGrow: 1,
-        overflowX: 'auto',
+        overflowX: 'auto', // Permite el desplazamiento horizontal si el contenido es demasiado ancho
     };
 
     return (
         <nav style={styles}>
-            <img src='public/champions.png' alt="logo" style={logo} />
+            
             <div style={navbarLinks}>
                 <Link to='/' style={navbarLink}>HOME</Link>
                 <Link to='/champions' style={navbarLink}>CHAMPIONS</Link>
@@ -54,6 +54,7 @@ const NavBar = () => {
         </nav>
     );
 }
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -70,7 +71,7 @@ const Login = () => {
         console.log(email)
 
         // Enviar datos a la API
-        const response = await fetch('https://your-api-endpoint.com/login', {
+        const response = await fetch('http://3.129.191.211/api/22952/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,11 +81,11 @@ const Login = () => {
 
         const data = await response.json();
 
-        if (data.status === 'ok') {
+        if (data.message === 'ok') {
             // Guardar token en local storage
             localStorage.setItem('token', data.token);
-            // Redirigir a otra página
-            navigate('/champions');
+            // Redirigir a la página de administración
+            navigate('/admin');
         } else {
             // Manejar error
             alert('Login failed');
